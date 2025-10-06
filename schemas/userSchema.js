@@ -10,13 +10,25 @@ const createUserSchema = Joi.object({
 const creatmemberSchema = Joi.object({
    memberId: Joi.string().min(2).required(),
    electionId : Joi.number().required(),
+   post_id : Joi.number().required(),
 })
 const createOtpsend = Joi.object({
-   selectedMethod: Joi.string().min(2).required(),
-   memberId: Joi.string().required(),
-   electionId: Joi.number().required(),
+   selectedMethod: Joi.string().valid("phone","email").required().messages({
+       "any.only": "selectedMethod must be either 'phone' or 'email'",
+      "any.required": "selectedMethod is required",
+      "string.base": "selectedMethod must be a string"
+   })
+ 
+});
+const createverifyOtp = Joi.object({
+  OTP: Joi.string().required()
+
+})
+
+const creatVotechoose = Joi.object({
+   candidate_id:Joi.number().required()
 })
 
 
 
-module.exports = { createUserSchema ,creatmemberSchema,createOtpsend};
+module.exports = { createUserSchema ,creatmemberSchema,createOtpsend,creatVotechoose,createverifyOtp};

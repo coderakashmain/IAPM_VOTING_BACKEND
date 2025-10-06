@@ -23,10 +23,12 @@ app.use(
 
 
 // Routes
+
 const voteRoutes = require('./routes/voteRoutes');
 const authRoutes = require('./routes/authRoutes')
 app.use('/api/vote', voteRoutes);
 app.use('/api/auth',authRoutes)
+
 
 
 //Handling ratelimt
